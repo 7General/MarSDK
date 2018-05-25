@@ -11,14 +11,12 @@
 // limitations under the License.
 
 #import <Foundation/Foundation.h>
-#import "Messagecmd.pbobjc.h"
-#import "AuthTask.h"
-#import "PullHistoryTask.h"
-#import "SyncTask.h"
-#import "C2GSendTask.h"
-#import "C2AiTask.h"
-#import "C2KfTask.h"
-#import "DistributionTask.h"
+
+typedef NS_ENUM(int32_t,CmdID) {
+    /** 登录 */
+    CmdID_CmdIdAuth = 1001,
+};
+
 
 
 /// object is integer enum (GZIMLongLinkStatus)
@@ -84,81 +82,7 @@ typedef NS_ENUM(NSInteger, GZCSLongLinkStatus){
 - (uint32_t)startTask:(CGITask*)task;
 
 #pragma mark - Bussiness
-- (uint32_t)startAuthWithUserId:(NSString *)uid
-                          token:(NSString *)token
-                         domain:(int32_t)domain
-                       onResult:(void(^)(BOOL success, AuthResponse *response))result;
 
-- (uint32_t)startLogoutWithUserId:(NSString *)uid
-                            token:(NSString *)token;
-
-- (uint32_t)startC2GSendWithFrom:(NSString *)from
-                        fromName:(NSString *)fromName
-                           group:(NSString *)group
-                         content:(NSString *)content
-                            type:(int32_t)type
-                        onResult:(void (^)(BOOL success, C2GSendResponse *response))result;
-
-
-
-
-- (uint32_t)startPullHistoryWithUserId:(NSString *)uid
-                                domain:(int32_t)domain
-                                chatId:(NSString *)chatId
-                                 appId:(NSString *)appId
-                               sceneId:(NSString *)sceneId
-                                offset:(int64_t)offset
-                                 limit:(int32_t)limit
-                                 logId:(NSString *)logId
-                              onResult:(void (^)(BOOL, PullHistoryResponse *))result;
-
-
-/* sync同步 */
-- (uint32_t)startSyncWithUid:(NSString *)uid
-                      domain:(int32_t)domain
-                      offect:(int64_t)offect
-                       limit:(int32_t)limit
-                       logId:(NSString *)logId
-                       appId:(NSString *)appId
-                    onResult:(void (^)(BOOL success, SyncResponse *response))result;
-
-/* C2AI */
-- (uint32_t)startC2AiWithFrom:(NSString *)from
-                     fromName:(NSString *)fromName
-                   fromDomain:(int32_t)fromDomain
-                         guid:(NSString *)guid
-                       chatId:(NSString *)chatId
-                      sceneId:(NSString *)sceneId
-                      content:(NSString *)content
-                         type:(int32_t)type
-                        appId:(NSString *)appId
-                          ext:(NSString *)ext
-                     onResult:(void (^)(BOOL success, C2AiResponse *response))result;
-
-/* C2KF */
-- (uint32_t)startC2KfWithFrom:(NSString *)from
-                     fromName:(NSString *)fromName
-                   fromDomain:(int32_t)fromDomain
-                         guid:(NSString *)guid
-                       chatId:(NSString *)chatId
-                      sceneId:(NSString *)sceneId
-                      content:(NSString *)content
-                         type:(int32_t)type
-                        appId:(NSString *)appId
-                          ext:(NSString *)ext
-                     onResult:(void (^)(BOOL success, C2KfResponse *response))result;
-
-/* 坐席分配 */
-- (uint32_t)startDistributeWithFrom:(NSString *)from
-                                        fromDomain:(int32_t)fromDomain
-                                        guid:(NSString *)guid
-                                        sceneId:(NSString *)sceneId
-                                        content:(NSString *)content
-                                        type:(int32_t)type
-                                        appId:(NSString *)appId
-                             chatId:(NSString *)chatId
-                                ext:(NSString *)ext
-                           onResult:(void (^)(BOOL success, DistributeResponse *response))result;
 
 
 

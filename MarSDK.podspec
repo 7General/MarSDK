@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MarSDK'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'A short description of MarSDK.'
 
 
@@ -26,7 +26,7 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'MarSDK/Classes/**/*'
-  s.requires_arc = 'MarSDK/Classes/IMLonglink/**/**.*'
+  #s.requires_arc = 'MarSDK/Classes/IMLonglink/**/**.*'
   
   s.libraries = 'z','resolv.9'
   s.frameworks = 'CoreTelephony','SystemConfiguration','CoreGraphics'

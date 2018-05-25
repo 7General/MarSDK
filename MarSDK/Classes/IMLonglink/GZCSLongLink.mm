@@ -22,11 +22,8 @@
 #import <mars/baseevent/base_logic.h>
 
 #import <SystemConfiguration/SCNetworkReachability.h>
-#import "LogoutTask.h"
 
-#import "C2GSendTask.h"
 
-#import "GZCSDefine.h"
 
 
 NSString * const kGZCSLongLinkStatusObserverName = @"kGZCSLongLinkStatusObserverName";
@@ -141,86 +138,7 @@ using namespace mars::stn;
 }
 
 #pragma mark - Bussiness
-- (uint32_t)startAuthWithUserId:(NSString *)uid token:(NSString *)token domain:(int32_t)domain onResult:(void (^)(BOOL, AuthResponse *))result {
-    return [self startTask:[AuthTask taskWithUserId:uid token:token domain:domain onResult:result]];
-}
 
-- (uint32_t)startLogoutWithUserId:(NSString *)uid token:(NSString *)token {
-    return [self startTask:[LogoutTask taskWithUserId:uid andToken:token]];
-}
-
-- (uint32_t)startC2GSendWithFrom:(NSString *)from fromName:(NSString *)fromName group:(NSString *)group content:(NSString *)content type:(int32_t)type onResult:(void (^)(BOOL, C2GSendResponse *))result
-{
-    return [self startTask:[C2GSendTask taskWithFrom:from fromName:fromName group:group content:content type:type onResult:result]];
-}
-
-
-- (uint32_t)startPullHistoryWithUserId:(NSString *)uid
-                                domain:(int32_t)domain
-                                chatId:(NSString *)chatId
-                                 appId:(NSString *)appId
-                               sceneId:(NSString *)sceneId
-                                offset:(int64_t)offset
-                                 limit:(int32_t)limit
-                                 logId:(NSString *)logId
-                              onResult:(void (^)(BOOL, PullHistoryResponse *))result
-{
-    return [self startTask:[PullHistoryTask taskWithUserId:uid domain:domain chatId:chatId appId:appId sceneId:sceneId offset:offset count:limit logId:logId onResult:result]];
-}
-
-/* sync同步 */
-- (uint32_t)startSyncWithUid:(NSString *)uid
-                      domain:(int32_t)domain
-                      offect:(int64_t)offect
-                       limit:(int32_t)limit
-                       logId:(NSString *)logId
-                       appId:(NSString *)appId
-                    onResult:(void (^)(BOOL success, SyncResponse *response))result {
-    return [self startTask:[SyncTask syncWithUid:uid domain:domain offect:offect limit:limit logId:logId appId:appId onResult:result]];
-}
-
-
-/* C2AI */
-- (uint32_t)startC2AiWithFrom:(NSString *)from
-                     fromName:(NSString *)fromName
-                   fromDomain:(int32_t)fromDomain
-                         guid:(NSString *)guid
-                       chatId:(NSString *)chatId
-                      sceneId:(NSString *)sceneId
-                      content:(NSString *)content
-                         type:(int32_t)type
-                        appId:(NSString *)appId
-                          ext:(NSString *)ext
-                     onResult:(void (^)(BOOL success, C2AiResponse *response))result {
-    return [self startTask:[C2AiTask C2AiWithFrom:from fromName:fromName fromDomain:fromDomain guid:guid chatId:chatId sceneId:sceneId content:(content) type:type appId:appId ext:ext onResult:result]];
-}
-/* C2KF */
-- (uint32_t)startC2KfWithFrom:(NSString *)from
-                     fromName:(NSString *)fromName
-                   fromDomain:(int32_t)fromDomain
-                         guid:(NSString *)guid
-                       chatId:(NSString *)chatId
-                      sceneId:(NSString *)sceneId
-                      content:(NSString *)content
-                         type:(int32_t)type
-                        appId:(NSString *)appId
-                          ext:(NSString *)ext
-                     onResult:(void (^)(BOOL success, C2KfResponse *response))result {
-    return [self startTask:[C2KfTask C2KfWithFrom:from fromName:fromName fromDomain:fromDomain guid:guid chatId:chatId sceneId:sceneId content:content type:type appId:appId ext:ext onResult:result]];
-}
-/* 坐席分配 */
-- (uint32_t)startDistributeWithFrom:(NSString *)from
-                         fromDomain:(int32_t)fromDomain
-                               guid:(NSString *)guid
-                            sceneId:(NSString *)sceneId
-                            content:(NSString *)content
-                               type:(int32_t)type
-                              appId:(NSString *)appId
-                             chatId:(NSString *)chatId
-                                ext:(NSString *)ext
-                           onResult:(void (^)(BOOL success, DistributeResponse *response))result {
-    return [self startTask:[DistributionTask DistributionWithFrom:from fromDomain:fromDomain guid:guid sceneId:sceneId content:content type:type appId:appId chatId:chatId ext:ext onResult:result]];
-}
 
 #pragma mark - Callback
 - (void)OnConnectionStatusChange:(int)status longConnStatus:(int)longConnStatus
@@ -318,14 +236,14 @@ using namespace mars::stn;
         
         BOOL ok = [_authDelegate longLinkAuthRequestWithUid:&uid token:&token domain:&domain guid:&guid];
         if (ok) {
-            AuthRequest *request = [AuthRequest new];
-            request.uid = uid;
-            request.token = token;
-            request.domain = domain;
-            request.guid = guid;
-            request.appId = @"GUAZI";
-            request.timestamp = (int64_t)([[NSDate date] timeIntervalSince1970]*1000);
-            data = [request data];
+//            AuthRequest *request = [AuthRequest new];
+//            request.uid = uid;
+//            request.token = token;
+//            request.domain = domain;
+//            request.guid = guid;
+//            request.appId = @"GUAZI";
+//            request.timestamp = (int64_t)([[NSDate date] timeIntervalSince1970]*1000);
+//            data = [request data];
         }
     }
     return data;
@@ -334,8 +252,8 @@ using namespace mars::stn;
 - (BOOL)authResponseData:(NSData*)responseData {
     BOOL authed = NO;
     if (_authDelegate && [_authDelegate respondsToSelector:@selector(longlinkAuthResponseWithStatus:errCode:errMsg:)]) {
-        AuthResponse *response = [AuthResponse parseFromData:responseData error:nil];
-        authed = [_authDelegate longlinkAuthResponseWithStatus:response.status errCode:response.code errMsg:response.msg];
+//        AuthResponse *response = [AuthResponse parseFromData:responseData error:nil];
+//        authed = [_authDelegate longlinkAuthResponseWithStatus:response.status errCode:response.code errMsg:response.msg];
     }
     return authed;
 }
