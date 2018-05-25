@@ -1,1 +1,1 @@
-../../../../../MarSDK/Classes/IMLonglink/Mars/Source/stnproto_logic.h
+../../../../../MarSDK/Classes/IMLonglink/Mars/stnproto_logic.h

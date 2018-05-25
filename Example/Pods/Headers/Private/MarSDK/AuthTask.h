@@ -1,1 +1,1 @@
-../../../../../MarSDK/Classes/IMLonglink/Bussiness/Task/AuthTask.h
+../../../../../MarSDK/Classes/IMLonglink/Bussiness/AuthTask.h
