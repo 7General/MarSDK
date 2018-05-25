@@ -1,6 +1,6 @@
 {
   "name": "MarSDK",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "summary": "A short description of MarSDK.",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/wanghuizhou21@163.com/MarSDK",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/7General/MarSDK.git",
-    "tag": "0.0.1"
+    "tag": "0.0.3"
   },
   "platforms": {
     "ios": "8.0"
