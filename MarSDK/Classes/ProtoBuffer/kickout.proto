@@ -1,0 +1,24 @@
+syntax = "proto3";
+package protocol.protobuf;
+
+option java_package = "com.guazi.pigeon.protocol.protobuf";
+option java_outer_classname = "Kickout";
+
+message KickoutRequest {
+	enum Reason {
+    	FORBID_USE = 0;//这个值不能使用
+		OTHER_LOGIN = 1;//其他地方登陆,多设备登录
+		IN_BLACK_LIST = 2;//包含离职踢人
+		OTHER_REASON = 3;
+		RETRY_CONNECT = 4;//断线重连
+
+	}
+    int32 reason = 1;//踢人原因
+
+    //added for sdk
+    string message = 2;//踢人原因描述
+}
+
+message KickoutResponse {//kickout的响应包没有包体,client也可不回响应包
+
+}

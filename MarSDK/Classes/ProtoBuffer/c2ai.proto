@@ -1,0 +1,24 @@
+syntax = "proto3";
+package protocol.protobuf;
+
+option java_package = "com.guazi.gelada.protocol.protobuf";
+option java_outer_classname = "C2Ai";
+
+message C2AiRequest {//用户发给机器人的消息
+  string from = 1;//发送者ID
+  string fromName = 2;
+  int32 fromDomain = 3;//发送者所属用户类型,具体见DomainType
+  string guid=4;//用户guid
+  int64 chatId = 5;//会话ID
+  string sceneId=6;//场景ID
+  string content = 7;//消息内容
+  int32 type = 8;//消息类型，比如文本，图片，文件等
+  string appId = 9;//app标识，如瓜子，毛豆app
+  string ext = 10;//扩展内容，建议采用富文本
+}
+
+message C2AiResponse {
+	int64 msgid = 1;//落地存储的消息id（针对此条消息）
+	int64 timestamp = 2;//收到群聊消息的时间戳
+}
+

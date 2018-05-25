@@ -1,0 +1,46 @@
+syntax = "proto3";
+package protocol.protobuf;
+
+option java_package = "com.guazi.gelada.protocol.protobuf";
+option java_outer_classname = "PullHistory";
+
+message PullHistoryRequest {
+    string uid = 1;//用户id,包含内部、外部、匿名
+    int32 domain = 2; //用户所属类别，见枚举类UserDomain
+    int64 chatId = 3;//会话ID
+    string appId = 4;//app标识，如瓜子，毛豆app
+    string sceneId = 5;//场景ID
+    int32 clientType = 6; //IM端类型，见枚举类ClientType, 未来用来过滤这个端发出来的消息
+    int64 offset = 7;//拉取消息起始位置，初始是0，之后用服务器返回的数据
+    int32 limit = 8;//单次拉取消息的数量，默认值50
+    string logId = 9;//服务端traceid，用于跟踪消息流转全链路
+}
+
+message PullHistoryMsg {
+    string from = 1;//发送者id
+    string fromName = 2;
+    int32 fromDomain = 3;//发送者所属用户类型,具体见DomainType
+    int64 chatId = 4;//会话ID
+
+    string content = 5;//消息内容
+    int64 msgid = 6;//消息服务器对消息的编号，
+    int32 sequence = 7;//按人全局唯一的消息序号
+    int32 cmdId = 8;//消息原始命令号，可标识消息类型
+    int64 sendTime = 9;//服务器接收消息时间
+    int32 type = 10;//消息内容类型，比如文本，图片，文件等
+
+    string appId = 11;//app标识，如瓜子，毛豆app
+    string sceneId =12;//场景ID
+    string extra = 13;
+}
+
+message PullHistoryResponse {
+    //状态枚举
+    enum Status {
+        OK = 0;
+        ERR = 1;
+    }
+    repeated PullHistoryMsg msg = 1;//消息，采用富文本传输
+    int32 status = 2;//状态，使用枚举
+}
+

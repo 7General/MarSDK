@@ -1,0 +1,20 @@
+syntax = "proto3";
+package protocol.protobuf;
+
+option java_package = "com.guazi.gelada.protocol.protobuf";
+option java_outer_classname = "C2GSend";
+
+message C2GSendRequest {
+  string from = 1;//发送者
+  string fromName = 2;
+  int32 fromDomain = 3;
+  int64 chatId = 4;//目的群
+  string content = 5;//消息内容
+  int32 type = 6;//消息类型，比如文本，图片，文件等
+}
+
+message C2GSendResponse {
+	int64 msgid = 1;//落地存储的消息id（针对此条消息）
+	int64 timestamp = 2;//收到群聊消息的时间戳
+}
+

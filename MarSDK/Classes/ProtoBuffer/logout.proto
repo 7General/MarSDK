@@ -1,0 +1,15 @@
+syntax = "proto3";
+package protocol.protobuf;
+
+option java_package = "com.guazi.pigeon.protocol.protobuf";
+option java_outer_classname = "Logout";
+
+message LogoutRequest {
+  string token = 1;//用户token
+  string uid = 2;//用户id
+  int64 timestamp = 3;//发包时间戳
+}
+
+message LogoutResponse {//logout的响应包没有包体
+
+}
