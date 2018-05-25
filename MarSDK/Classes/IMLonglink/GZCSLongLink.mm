@@ -155,9 +155,9 @@ using namespace mars::stn;
             llStatus = GZCSLongLinkStatusDisconnected;
             break;
     }
-    if (_connectDelegate && [_connectDelegate respondsToSelector:@selector(longlinkContectStatusDidChanged:)]) {
+    if (self.connectDelegate && [self.connectDelegate respondsToSelector:@selector(longlinkContectStatusDidChanged:)]) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [_connectDelegate longlinkContectStatusDidChanged:llStatus];
+            [self.connectDelegate longlinkContectStatusDidChanged:llStatus];
         });
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{

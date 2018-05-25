@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MarSDK'
-  s.version          = '0.0.4'
+  s.version          = '0.0.5'
   s.summary          = 'A short description of MarSDK.'
 
 
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/wanghuizhou21@163.com/MarSDK'
+  s.homepage         = 'https://github.com/7General/MarSDK'
 
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'wanghuizhou21@163.com' => 'wanghuizhou@guazi.com' }
