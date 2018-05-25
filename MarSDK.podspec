@@ -20,7 +20,7 @@ TODO: Add long description of the pod here.
 
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'wanghuizhou21@163.com' => 'wanghuizhou@guazi.com' }
-  s.source           = { :git => 'https://github.com/wanghuizhou21@163.com/MarSDK.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/7General/MarSDK.git', :tag => s.version.to_s }
 
 
   s.ios.deployment_target = '8.0'
