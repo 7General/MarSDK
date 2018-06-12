@@ -1,7 +1,7 @@
 {
   "name": "MARSDK",
   "version": "0.0.1",
-  "summary": "A short description of MARSDK.",
+  "summary": "tencent WeChat For MARS",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/7General/MarSDK.git",
   "license": {
@@ -34,11 +34,11 @@
       "-lc++"
     ]
   },
+  "requires_arc": "MARSDK/Classes/Arc/**/*",
+  "public_header_files": "MARSDK/Classes/**/*.h",
   "dependencies": {
     "Protobuf": [
 
     ]
-  },
-  "requires_arc": "MARSDK/Classes/Arc/**/*",
-  "public_header_files": "MARSDK/Classes/**/*.h"
+  }
 }

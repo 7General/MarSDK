@@ -1,4 +1,4 @@
-use_frameworks!
+#use_frameworks!
 
 target 'MARSDK_Example' do
   pod 'MARSDK', :path => '../'
