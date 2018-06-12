@@ -1,1 +1,1 @@
-../../../../../MARSDK/Classes/MarsKit/Dispatch/NetworkStatus.h
+../../../../../MARSDK/Classes/MarsKit/Mars/NetworkStatus.h

@@ -34,11 +34,12 @@ typedef NS_ENUM(NSInteger, MARSLongLinkStatus){
 @optional
 - (BOOL)longLinkAuthed;
 - (BOOL)longLinkAuthRequestWithUid:(NSString **)uid token:(NSString **)token domain:(int32_t *)domain guid:(NSString **)guid;
-- (BOOL)longlinkAuthResponseWithStatus:(int32_t)status errCode:(int32_t)code errMsg:(NSString *)msg;
+- (BOOL)longlinkAuthResponseWithStatus:(int32_t)status errCode:(int32_t)code errMsg:(NSString *)msg timestamp:(int64_t)timestamp;
 @end
 
 @protocol MARSLongLinkContectDelegate <NSObject>
-@optional - (void)longlinkContectStatusDidChanged:(MARSLongLinkStatus)status;
+@optional
+- (void)longlinkContectStatusDidChanged:(MARSLongLinkStatus)status;
 @end
 
 @class CGITask;

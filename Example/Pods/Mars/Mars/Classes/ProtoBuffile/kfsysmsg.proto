@@ -1,0 +1,46 @@
+syntax = "proto3";
+package protocol.protobuf;
+
+option java_package = "com.guazi.gelada.protocol.protobuf";
+option java_outer_classname = "KfSysMsgPush";
+
+
+//客服系统关注的系统消息
+message KfSysMsgPushRequest {
+	enum SysMsgType {
+        UNKOWN_TYPE = 0;
+        ///用户与机器人建立会话，请求分配时发起
+        ESTABLISH_CONVERSATION_WITH_ROBOT = 1;
+        ///请求转人工，请求分配时发起
+        REQUEST_FOR_MANUAL = 2;
+        ///用户与客服建立会话，分配结果返回时发起
+        ESTABLISH_CONVERSATION_WITH_KF = 3;
+        ///用户与客服结束会话，客服发起
+        END_CONVERSATION_WITH_KF = 4;
+        ///添加星标
+        ADD_STAR = 5;
+        ///取消星标
+        CANCEL_STAR = 6;
+        ///进行了评价
+        END_RATE = 7;
+	}
+
+    string from = 1;//发送者
+    int32 fromDomain = 2;//发送者域
+    string fromName = 3;
+    string to = 4;//接收者
+    int32 toDomain = 5;//接收者域
+
+    int32 type = 6;//系统消息类型,SysMsgType
+    int64 msgid = 7;//消息服务器对消息的编号(针对每个用户独立的一份消息)
+    string content = 8;//消息内容
+
+    int64 chatId = 9;//会话ID
+    string sceneId = 10;//场景ID
+    string appId = 11;//app标识，如瓜子，毛豆app
+}
+
+message KfSysMsgPushResponse {
+    int64 msgid = 1;//落地存储的消息id
+    int64 timestamp = 2;//收到单聊消息的时间戳
+}

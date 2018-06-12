@@ -1,0 +1,19 @@
+syntax = "proto3";
+package protocol.protobuf;
+
+option java_package = "com.guazi.gelada.protocol.protobuf";
+option java_outer_classname = "MessageType";
+
+enum MsgType {
+  MSG_TYPE_TEXT = 0;//文本
+  MSG_TYPE_IMAGE = 1;//图片
+  MSG_TYPE_VOICE = 2;//语音文件
+  MSG_TYPE_FILE = 3;//普通文件
+  MSG_TYPE_URL = 4;//URL
+  MSG_TYPE_NOTIFY = 5;//通知
+  MSG_TYPE_VCARD = 6;//名片
+  MSG_TYPE_RED_PACKET = 7;//红包
+  MSG_TYPE_RED_PACKET_TIPS = 8;//红包提示
+  MSG_TYPE_EMOTICON = 9;//大表情
+  MSG_TYPE_RICH_TEXT = 10;//富文本
+}

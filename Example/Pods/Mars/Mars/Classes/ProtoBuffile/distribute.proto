@@ -1,0 +1,31 @@
+syntax = "proto3";
+package protocol.protobuf;
+
+option java_package = "com.guazi.gelada.protocol.protobuf";
+option java_outer_classname = "Distribute";
+
+message DistributeRequest {//分配客服
+  string from = 1;//发送者ID
+  int32 fromDomain = 2;//发送者所属用户类型,具体见DomainType
+  string guid=3;//发送者guid
+  string sceneId = 4;//场景ID
+  string content = 5;//富文本
+  int32 type = 6;//类型，如用户刚打开聊天界面，转人工。详见DistributeType
+  string appId = 7;//app标识，如瓜子、毛豆app
+  int32 clientType = 8;//端类型
+  int64 chatId = 9;//会话ID
+  string ext=10;//扩展内容，建议采用富文本
+}
+
+message DistributeResponse {
+	int64 msgid = 1;//落地存储的消息id（针对此条消息）
+	int64 timestamp = 2;//收到群聊消息的时间戳
+}
+
+
+enum DistributeType {
+  DISTRIBUTE_TYPE_TRUN_MANUAL = 0;//转人工
+  DISTRIBUTE_TYPE_JUST_ENTER_KF_PAGE = 1;//刚进入客服页面,决定是否发欢迎语
+  DISTRIBUTE_TYPE_MANUAL_TRUN_MANUAL = 2;//客服转客服
+}
+

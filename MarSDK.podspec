@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MARSDK'
-  s.version          = '0.0.5'
+  s.version          = '0.0.6'
   s.summary          = 'tencent WeChat For MARS'
 
 
@@ -36,8 +36,9 @@ TODO: Add long description of the pod here.
   
   ## 模块文件
   s.subspec "MarsKit" do |mk|
-      mk.source_files = 'MARSDK/Classes/MarsKit/*.{h,m}'
+      mk.source_files = 'MARSDK/Classes/MarsKit/**/*.*'
   end
+  
   
   s.subspec "ProtoBuffile" do |pb|
       pb.source_files = 'MARSDK/Classes/ProtoBuffile/*.{h,m}'
