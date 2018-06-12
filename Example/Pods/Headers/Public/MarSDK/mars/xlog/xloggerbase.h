@@ -1,1 +1,0 @@
-../../../../../../../MarSDK/Frameworks/mars.framework/Headers/xlog/xloggerbase.h

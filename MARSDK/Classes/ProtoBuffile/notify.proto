@@ -1,0 +1,15 @@
+syntax = "proto3";
+package protocol.protobuf;
+
+option java_package = "com.guazi.gelada.protocol.protobuf";
+option java_outer_classname = "Notify";
+
+//有新的同步消息提醒
+
+message NotifyRequest {
+  int64 msgid = 1;//消息服务器对消息的编号
+  string logId = 2;//服务端traceid，用于跟踪消息流转全链路。
+  int32 sequence = 3;//按人全局唯一的消息序号
+}
+
+

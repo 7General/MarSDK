@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:MarSDK.xcodeproj">
+      location = "self:MARSDK.xcodeproj">
    </FileRef>
 </Workspace>

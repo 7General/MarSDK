@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_MarSDK_ExampleVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_MarSDK_ExampleVersionString[];
+FOUNDATION_EXPORT double Pods_MARSDK_ExampleVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_MARSDK_ExampleVersionString[];
 

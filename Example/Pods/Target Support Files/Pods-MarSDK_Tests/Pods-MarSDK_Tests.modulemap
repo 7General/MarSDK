@@ -1,5 +1,5 @@
-framework module Pods_MarSDK_Tests {
-  umbrella header "Pods-MarSDK_Tests-umbrella.h"
+framework module Pods_MARSDK_Tests {
+  umbrella header "Pods-MARSDK_Tests-umbrella.h"
 
   export *
   module * { export * }

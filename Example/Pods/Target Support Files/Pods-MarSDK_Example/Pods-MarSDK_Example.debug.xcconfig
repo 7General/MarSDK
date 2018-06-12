@@ -1,9 +1,8 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../../MarSDK/Frameworks"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MARSDK" "${PODS_CONFIGURATION_BUILD_DIR}/Protobuf"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 $(inherited) GPB_USE_PROTOBUF_FRAMEWORK_IMPORTS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/MarSDK" "${PODS_ROOT}/Headers/Public/Protobuf"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MarSDK" "${PODS_CONFIGURATION_BUILD_DIR}/Protobuf"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/MarSDK" -isystem "${PODS_ROOT}/Headers/Public/Protobuf"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"MarSDK" -l"Protobuf" -l"c++" -l"resolv.9" -l"z" -framework "CoreGraphics" -framework "CoreTelephony" -framework "SystemConfiguration" -framework "mars"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "${PODS_CONFIGURATION_BUILD_DIR}/MARSDK/MARSDK.framework/Headers" -iquote "${PODS_CONFIGURATION_BUILD_DIR}/Protobuf/Protobuf.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -framework "MARSDK" -framework "Protobuf"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

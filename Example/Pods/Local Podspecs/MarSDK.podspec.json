@@ -1,9 +1,9 @@
 {
-  "name": "MarSDK",
-  "version": "0.0.4",
-  "summary": "A short description of MarSDK.",
+  "name": "MARSDK",
+  "version": "0.0.1",
+  "summary": "A short description of MARSDK.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/7General/MarSDK",
+  "homepage": "https://github.com/7General/MarSDK.git",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -13,12 +13,13 @@
   },
   "source": {
     "git": "https://github.com/7General/MarSDK.git",
-    "tag": "0.0.4"
+    "tag": "0.0.1"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "MarSDK/Classes/**/*",
+  "source_files": "MARSDK/Classes/**/*",
+  "vendored_frameworks": "MARSDK/Framework/mars.framework",
   "libraries": [
     "z",
     "resolv.9"
@@ -28,7 +29,6 @@
     "SystemConfiguration",
     "CoreGraphics"
   ],
-  "vendored_frameworks": "MarSDK/Frameworks/mars.framework",
   "user_target_xcconfig": {
     "OTHER_LDFLAGS": [
       "-lc++"
@@ -38,5 +38,7 @@
     "Protobuf": [
 
     ]
-  }
+  },
+  "requires_arc": "MARSDK/Classes/Arc/**/*",
+  "public_header_files": "MARSDK/Classes/**/*.h"
 }

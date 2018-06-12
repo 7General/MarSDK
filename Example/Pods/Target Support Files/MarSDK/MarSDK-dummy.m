@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-@interface PodsDummy_MarSDK : NSObject
+@interface PodsDummy_MARSDK : NSObject
 @end
-@implementation PodsDummy_MarSDK
+@implementation PodsDummy_MARSDK
 @end

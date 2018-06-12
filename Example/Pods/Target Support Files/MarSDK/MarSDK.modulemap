@@ -1,5 +1,5 @@
-framework module MarSDK {
-  umbrella header "MarSDK-umbrella.h"
+framework module MARSDK {
+  umbrella header "MARSDK-umbrella.h"
 
   export *
   module * { export * }

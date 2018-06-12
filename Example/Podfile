@@ -1,9 +1,9 @@
-#use_frameworks!
+use_frameworks!
 
-target 'MarSDK_Example' do
-  pod 'MarSDK', :path => '../'
+target 'MARSDK_Example' do
+  pod 'MARSDK', :path => '../'
 
-  target 'MarSDK_Tests' do
+  target 'MARSDK_Tests' do
     inherit! :search_paths
 
     

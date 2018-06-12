@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F589195388D20070C39A"
-               BuildableName = "MarSDK_Example.app"
-               BlueprintName = "MarSDK_Example"
-               ReferencedContainer = "container:MarSDK.xcodeproj">
+               BuildableName = "MARSDK_Example.app"
+               BlueprintName = "MARSDK_Example"
+               ReferencedContainer = "container:MARSDK.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6003F5AD195388D20070C39A"
-               BuildableName = "MarSDK_Tests.xctest"
-               BlueprintName = "MarSDK_Tests"
-               ReferencedContainer = "container:MarSDK.xcodeproj">
+               BuildableName = "MARSDK_Tests.xctest"
+               BlueprintName = "MARSDK_Tests"
+               ReferencedContainer = "container:MARSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "MarSDK_Example.app"
-            BlueprintName = "MarSDK_Example"
-            ReferencedContainer = "container:MarSDK.xcodeproj">
+            BuildableName = "MARSDK_Example.app"
+            BlueprintName = "MARSDK_Example"
+            ReferencedContainer = "container:MARSDK.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -66,9 +66,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "MarSDK_Example.app"
-            BlueprintName = "MarSDK_Example"
-            ReferencedContainer = "container:MarSDK.xcodeproj">
+            BuildableName = "MARSDK_Example.app"
+            BlueprintName = "MARSDK_Example"
+            ReferencedContainer = "container:MARSDK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -85,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6003F589195388D20070C39A"
-            BuildableName = "MarSDK_Example.app"
-            BlueprintName = "MarSDK_Example"
-            ReferencedContainer = "container:MarSDK.xcodeproj">
+            BuildableName = "MARSDK_Example.app"
+            BlueprintName = "MARSDK_Example"
+            ReferencedContainer = "container:MARSDK.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
