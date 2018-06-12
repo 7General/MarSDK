@@ -1,1 +1,1 @@
-../../../../../MARSDK/Classes/Arc/Task/AuthTask.h
+../../../../../MARSDK/Classes/MarsKit/Task/AuthTask.h

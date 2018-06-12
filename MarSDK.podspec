@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MARSDK'
-  s.version          = '0.0.3'
+  s.version          = '0.0.4'
   s.summary          = 'tencent WeChat For MARS'
 
 
@@ -21,17 +21,26 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'MARSDK/Classes/**/*'
   
-  #Mars库配置
+  ## Mars库配置
   s.vendored_frameworks  = 'MARSDK/Framework/mars.framework'
   s.libraries = 'z','resolv.9'
   s.frameworks = 'CoreTelephony','SystemConfiguration','CoreGraphics'
   s.user_target_xcconfig =   {'OTHER_LDFLAGS' => ['-lc++']}
   
-  s.requires_arc = 'MARSDK/Classes/Arc/**/*'
+  s.requires_arc = 'MARSDK/Classes/MarsKit/**/*'
   
   s.public_header_files = 'MARSDK/Classes/**/*.h'
   
   s.dependency 'Protobuf'
+  
+  ## 模块文件
+  s.subspec "MarsKit" do |mk|
+      mk.source_files = 'MARSDK/Classes/MarsKit/*.{h,m}'
+  end
+  
+  s.subspec "ProtoBuffile" do |pb|
+      pb.source_files = 'MARSDK/Classes/ProtoBuffile/*.{h,m}'
+  end
   
   
   
