@@ -3,7 +3,7 @@
 Pod::Spec.new do |s|
   s.name             = 'MARSDK'
   s.version          = '0.0.1'
-  s.summary          = 'A short description of MARSDK.'
+  s.summary          = 'tencent WeChat For MARS'
 
 
   s.description      = <<-DESC
