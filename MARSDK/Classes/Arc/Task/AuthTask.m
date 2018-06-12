@@ -7,8 +7,8 @@
 //
 
 #import "AuthTask.h"
-#import <Clienttype.pbobjc.h>
-#import "GZCSLogHelper.h"
+
+#import "MARSLogHelper.h"
 #import "Messagecmd.pbobjc.h"
 
 @interface AuthTask()
@@ -31,7 +31,7 @@
         AuthRequest * request = [AuthRequest new];
         request.uid = uid;
         request.token = token;
-        request.clientType = ClientType_ClientTypeIos;
+        //request.clientType = ClientType_ClientTypeIos;
         request.guid = guid;
         request.appId = appid;
         request.domain = domain;

@@ -11,7 +11,7 @@
 // limitations under the License.
 
 #include "stn_callback.h"
-#import "GZCSLongLink.h"
+#import "MARSLongLink.h"
 #import <mars/comm/autobuffer.h>
 #import <mars/xlog/xlogger.h>
 #import <mars/stn/stn.h>
@@ -35,7 +35,7 @@ namespace mars {
         }
         
         bool StnCallBack::MakesureAuthed() {
-            return [[GZCSLongLink sharedLongLink] isAuthed];
+            return [[MARSLongLink sharedLongLink] isAuthed];
         }
         
         
@@ -46,23 +46,23 @@ namespace mars {
         std::vector<std::string> StnCallBack::OnNewDns(const std::string& _host) {
             std::vector<std::string> vector;
             //vector.push_back("118.89.24.72");
-            NSArray *ips = [[GZCSLongLink sharedLongLink] ipListForLonglink];
-            for (NSString *ip in ips) {
-                vector.push_back(ip.UTF8String);
-            }
-            
+//            NSArray *ips = [[MARSLongLink sharedLongLink] ipListForLonglink];
+//            for (NSString *ip in ips) {
+//                vector.push_back(ip.UTF8String);
+//            }
+//
             return vector;
         }
         
         void StnCallBack::OnPush(uint64_t _channel_id, uint32_t _cmdid, uint32_t _taskid, const AutoBuffer& _body, const AutoBuffer& _extend) {
             if (_body.Length() > 0) {
                 NSData* recvData = [NSData dataWithBytes:(const void *) _body.Ptr() length:_body.Length()];
-                [[GZCSLongLink sharedLongLink] OnPushWithCmd:_cmdid data:recvData];
+                [[MARSLongLink sharedLongLink] OnPushWithCmd:_cmdid data:recvData];
             }
         }
         
         bool StnCallBack::Req2Buf(uint32_t _taskid, void* const _user_context, AutoBuffer& _outbuffer, AutoBuffer& _extend, int& _error_code, const int _channel_select) {
-            NSData* requestData =  [[GZCSLongLink sharedLongLink] Request2BufferWithTaskID:_taskid userContext:_user_context];
+            NSData* requestData =  [[MARSLongLink sharedLongLink] Request2BufferWithTaskID:_taskid userContext:_user_context];
             if (requestData == nil) {
                 requestData = [[NSData alloc] init];
             }
@@ -75,7 +75,7 @@ namespace mars {
             
             int handle_type = mars::stn::kTaskFailHandleNormal;
             NSData* responseData = [NSData dataWithBytes:(const void *) _inbuffer.Ptr() length:_inbuffer.Length()];
-            int errorCode = [[GZCSLongLink sharedLongLink] Buffer2ResponseWithTaskID:_taskid ResponseData:responseData userContext:_user_context];
+            int errorCode = [[MARSLongLink sharedLongLink] Buffer2ResponseWithTaskID:_taskid ResponseData:responseData userContext:_user_context];
             
             if (errorCode != 0) {
                 handle_type = mars::stn::kTaskFailHandleDefault;
@@ -86,13 +86,13 @@ namespace mars {
         
         int StnCallBack::OnTaskEnd(uint32_t _taskid, void* const _user_context, int _error_type, int _error_code) {
             
-            return [[GZCSLongLink sharedLongLink] OnTaskEndWithTaskID:_taskid userContext:_user_context errType:_error_type errCode:_error_code];
+            return [[MARSLongLink sharedLongLink] OnTaskEndWithTaskID:_taskid userContext:_user_context errType:_error_type errCode:_error_code];
             
         }
         
         void StnCallBack::ReportConnectStatus(int _status, int longlink_status) {
             
-            [[GZCSLongLink sharedLongLink] OnConnectionStatusChange:_status longConnStatus:longlink_status];
+            [[MARSLongLink sharedLongLink] OnConnectionStatusChange:_status longConnStatus:longlink_status];
             
             switch (longlink_status) {
                 case mars::stn::kServerFailed:
@@ -115,9 +115,9 @@ namespace mars {
         // 需要组件组包，发送一个req过去，网络成功会有resp，但没有taskend，处理事务时要注意网络时序
         // 不需组件组包，使用长链做一个sync，不用重试
         int  StnCallBack::GetLonglinkIdentifyCheckBuffer(AutoBuffer& _identify_buffer, AutoBuffer& _buffer_hash, int32_t& _cmdid) {
-            _cmdid = [[GZCSLongLink sharedLongLink] authCmdId];
+            _cmdid = [[MARSLongLink sharedLongLink] authCmdId];
             
-            NSData* requestData = [[GZCSLongLink sharedLongLink] authRequestData];
+            NSData* requestData = [[MARSLongLink sharedLongLink] authRequestData];
             if (requestData) {
                 _identify_buffer.AllocWrite(requestData.length);
                 _identify_buffer.Write(requestData.bytes, requestData.length);
@@ -129,7 +129,7 @@ namespace mars {
         
         bool StnCallBack::OnLonglinkIdentifyResponse(const AutoBuffer& _response_buffer, const AutoBuffer& _identify_buffer_hash) {
             NSData* responseData = [NSData dataWithBytes:(const void *) _response_buffer.Ptr() length:_response_buffer.Length()];
-            return [[GZCSLongLink sharedLongLink] authResponseData:responseData];
+            return [[MARSLongLink sharedLongLink] authResponseData:responseData];
         }
         
         void StnCallBack::RequestSync() {

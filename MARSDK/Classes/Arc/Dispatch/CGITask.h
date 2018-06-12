@@ -11,7 +11,7 @@
 // limitations under the License.
 
 #import <Foundation/Foundation.h>
-#import "GZCSLogHelper.h"
+#import "MARSLogHelper.h"
 
 typedef enum : int32_t {
     ChannelType_ShortConn = 1,

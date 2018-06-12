@@ -21,7 +21,7 @@
 #import <Foundation/Foundation.h>
 #import <mars/xlog/xloggerbase.h>
 
-@interface GZCSLogHelper : NSObject
+@interface MARSLogHelper : NSObject
 
 + (void)openXLogWithPath:(NSString *)path logLever:(TLogLevel)level;
 + (void)closeXLog;
@@ -37,9 +37,9 @@
 // XLOG
 #define LogInternal(level, file, line, func, prefix, format, ...) \
 do { \
-    if ([GZCSLogHelper hasOpenXLog] && [GZCSLogHelper shouldLog:level]) { \
+    if ([MARSLogHelper hasOpenXLog] && [MARSLogHelper shouldLog:level]) { \
         NSString *aMessage = [NSString stringWithFormat:@"%@%@", prefix, [NSString stringWithFormat:format, ##__VA_ARGS__, nil]]; \
-        [GZCSLogHelper logWithLevel:level fileName:file lineNumber:line funcName:func message:aMessage]; \
+        [MARSLogHelper logWithLevel:level fileName:file lineNumber:line funcName:func message:aMessage]; \
     } \
 } while(0)
 

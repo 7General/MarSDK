@@ -14,7 +14,7 @@
 #define STNCALLBACK_h
 
 #import <mars/stn/stn_logic.h>
-#import "GZCSLongLink.h"
+#import "MARSLongLink.h"
 
 namespace mars {
     namespace stn {

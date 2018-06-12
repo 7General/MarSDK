@@ -18,14 +18,14 @@
 //  Copyright © 2016年 caoshaokun. All rights reserved.
 //
 
-#import "GZCSLogHelper.h"
+#import "MARSLogHelper.h"
 #import <sys/xattr.h>
 #import <mars/xlog/xlogger.h>
 #import <mars/xlog/appender.h>
 
 static NSUInteger g_processID = 0;
 
-@implementation GZCSLogHelper
+@implementation MARSLogHelper
 
 + (void)openXLogWithPath:(NSString *)path logLever:(TLogLevel)level
 {
@@ -36,7 +36,7 @@ static NSUInteger g_processID = 0;
     
     xlogger_SetLevel(level);
     appender_set_console_log(true);
-    appender_open(kAppednerAsync, [path UTF8String], "GZCS", "");
+    appender_open(kAppednerAsync, [path UTF8String], "MARS", "");
     __hasOpen = YES;
 }
 
@@ -46,7 +46,7 @@ static NSUInteger g_processID = 0;
     appender_close();
 }
 
-static NSString *__model = @"GZCS";
+static NSString *__model = @"MARS";
 + (void)setModelName:(NSString *)model
 {
     __model = model;

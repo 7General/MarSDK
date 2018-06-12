@@ -10,7 +10,7 @@
 // either express or implied. See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GZCSLongLink.h"
+#import "MARSLongLink.h"
 #import "CGITask.h"
 #import "NetworkStatus.h"
 
@@ -22,30 +22,27 @@
 #import <mars/baseevent/base_logic.h>
 
 #import <SystemConfiguration/SCNetworkReachability.h>
-#import "LogoutTask.h"
-//#import "GZCSHostsHelper.h"
-//#import "GZCSDefine.h"
-//#import "GZCSUserHelper.h"
 
-NSString * const kGZCSLongLinkStatusObserverName = @"kGZCSLongLinkStatusObserverName";
-NSString * const kGZCSLongLinkStatus = @"kGZCSLongLinkStatus";
-NSString * const kGZCSLongLinkUniqueTaskId = @"kGZCSLongLinkUniqueTaskId";
+
+NSString * const kMARSLongLinkStatusObserverName = @"kMARSLongLinkStatusObserverName";
+NSString * const kMARSLongLinkStatus = @"kMARSLongLinkStatus";
+NSString * const kMARSLongLinkUniqueTaskId = @"kMARSLongLinkUniqueTaskId";
 
 using namespace mars::stn;
-@interface GZCSLongLink () <NetworkStatusDelegate>
+@interface MARSLongLink () <NetworkStatusDelegate>
 {
     NSMapTable *_pushObservers;
     NSMutableDictionary *_sendTaskDictionary;
 }
 @end
 
-@implementation GZCSLongLink
+@implementation MARSLongLink
 
-+ (GZCSLongLink*)sharedLongLink {
-    static GZCSLongLink *sharedSingleton;
++ (MARSLongLink*)sharedLongLink {
+    static MARSLongLink *sharedSingleton;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sharedSingleton = [[GZCSLongLink alloc] init];
+        sharedSingleton = [[MARSLongLink alloc] init];
     });
     return sharedSingleton;
 }
@@ -64,7 +61,7 @@ using namespace mars::stn;
     _sendTaskDictionary = nil;
 }
 
-- (void)addLongLinkPushObserver:(id<GZCSLongLinkPushDelegate>)observer withCmdId:(CmdID)cmdId {
+- (void)addLongLinkPushObserver:(id<MARSLongLinkPushDelegate>)observer withCmdId:(CmdID)cmdId {
     [_pushObservers setObject:observer forKey:@(cmdId)];
 }
 
@@ -108,12 +105,12 @@ using namespace mars::stn;
 }
 
 - (uint32_t)nextTaskId {
-    uint32_t taskid = [[[NSUserDefaults standardUserDefaults] objectForKey:kGZCSLongLinkUniqueTaskId] unsignedIntValue];
+    uint32_t taskid = [[[NSUserDefaults standardUserDefaults] objectForKey:kMARSLongLinkUniqueTaskId] unsignedIntValue];
     uint32_t nextTaskId = 1;
     if (taskid > 0 || taskid < 0xF0000000) {
         nextTaskId = taskid+1;
     }
-    [[NSUserDefaults standardUserDefaults] setObject:@(nextTaskId) forKey:kGZCSLongLinkUniqueTaskId];
+    [[NSUserDefaults standardUserDefaults] setObject:@(nextTaskId) forKey:kMARSLongLinkUniqueTaskId];
     return nextTaskId;
 }
 
@@ -143,91 +140,20 @@ using namespace mars::stn;
     return [self startTask:[AuthTask taskWithUserId:uid token:token guid:(NSString *)guid appid:(NSString *)appid domain:domain onResult:result]];
 }
 
-- (uint32_t)startLogoutWithUserId:(NSString *)uid token:(NSString *)token {
-    return [self startTask:[LogoutTask taskWithUserId:uid andToken:token]];
-}
-
-
-- (uint32_t)startPullHistoryWithUserId:(NSString *)uid
-                                domain:(int32_t)domain
-                                chatId:(NSString *)chatId
-                                 appId:(NSString *)appId
-                               sceneId:(NSString *)sceneId
-                                offset:(int64_t)offset
-                                 limit:(int32_t)limit
-                                 logId:(NSString *)logId
-                              onResult:(void (^)(BOOL, PullHistoryResponse *))result
-{
-    return [self startTask:[PullHistoryTask taskWithUserId:uid domain:domain chatId:chatId appId:appId sceneId:sceneId offset:offset count:limit logId:logId onResult:result]];
-}
-
-/* sync同步 */
-- (uint32_t)startSyncWithUid:(NSString *)uid
-                      domain:(int32_t)domain
-                      offset:(int64_t)offset
-                       limit:(int32_t)limit
-                       logId:(NSString *)logId
-                       appId:(NSString *)appId
-                    onResult:(void (^)(BOOL success, SyncResponse *response))result {
-    return [self startTask:[SyncTask syncWithUid:uid domain:domain offset:offset limit:limit logId:logId appId:appId onResult:result]];
-}
-
-
-/* C2AI */
-- (uint32_t)startC2AiWithFrom:(NSString *)from
-                     fromName:(NSString *)fromName
-                   fromDomain:(int32_t)fromDomain
-                         guid:(NSString *)guid
-                       chatId:(NSString *)chatId
-                      sceneId:(NSString *)sceneId
-                      content:(NSString *)content
-                         type:(int32_t)type
-                        appId:(NSString *)appId
-                          ext:(NSString *)ext
-                     onResult:(void (^)(BOOL success, C2AiResponse *response))result {
-    return [self startTask:[C2AiTask C2AiWithFrom:from fromName:fromName fromDomain:fromDomain guid:guid chatId:chatId sceneId:sceneId content:(content) type:type appId:appId ext:ext onResult:result]];
-}
-/* C2KF */
-- (uint32_t)startC2KfWithFrom:(NSString *)from
-                     fromName:(NSString *)fromName
-                   fromDomain:(int32_t)fromDomain
-                         guid:(NSString *)guid
-                       chatId:(NSString *)chatId
-                      sceneId:(NSString *)sceneId
-                      content:(NSString *)content
-                         type:(int32_t)type
-                        appId:(NSString *)appId
-                          ext:(NSString *)ext
-                     onResult:(void (^)(BOOL success, C2KfResponse *response))result {
-    return [self startTask:[C2KfTask C2KfWithFrom:from fromName:fromName fromDomain:fromDomain guid:guid chatId:chatId sceneId:sceneId content:content type:type appId:appId ext:ext onResult:result]];
-}
-/* 坐席分配 */
-- (uint32_t)startDistributeWithFrom:(NSString *)from
-                         fromDomain:(int32_t)fromDomain
-                               guid:(NSString *)guid
-                            sceneId:(NSString *)sceneId
-                            content:(NSString *)content
-                               type:(int32_t)type
-                              appId:(NSString *)appId
-                             chatId:(NSString *)chatId
-                                ext:(NSString *)ext
-                           onResult:(void (^)(BOOL success, DistributeResponse *response))result {
-    return [self startTask:[DistributionTask DistributionWithFrom:from fromDomain:fromDomain guid:guid sceneId:sceneId content:content type:type appId:appId chatId:chatId ext:ext onResult:result]];
-}
 
 #pragma mark - Callback
 - (void)OnConnectionStatusChange:(int)status longConnStatus:(int)longConnStatus
 {
-    GZCSLongLinkStatus llStatus;
+    MARSLongLinkStatus llStatus;
     switch (longConnStatus) {
         case 4:
-            llStatus = GZCSLongLinkStatusConnected;
+            llStatus = MARSLongLinkStatusConnected;
             break;
         case 3:
-            llStatus = GZCSLongLinkStatusConnecting;
+            llStatus = MARSLongLinkStatusConnecting;
             break;
         default:
-            llStatus = GZCSLongLinkStatusDisconnected;
+            llStatus = MARSLongLinkStatusDisconnected;
             break;
     }
     __weak typeof(self) weakSelf = self;
@@ -237,29 +163,18 @@ using namespace mars::stn;
         });
     } else {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kGZCSLongLinkStatusObserverName object:nil userInfo:@{kGZCSLongLinkStatus:@(llStatus)}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kMARSLongLinkStatusObserverName object:nil userInfo:@{kMARSLongLinkStatus:@(llStatus)}];
         });
     }
 }
 
 - (void)OnPushWithCmd:(int)cmdId data:(NSData *)data {
-    id<GZCSLongLinkPushDelegate> pushObserver = [_pushObservers objectForKey:@(cmdId)];
+    id<MARSLongLinkPushDelegate> pushObserver = [_pushObservers objectForKey:@(cmdId)];
     if (pushObserver && [pushObserver respondsToSelector:@selector(longlinkPushMessage:withCmdId:)]) {
         [pushObserver longlinkPushMessage:data withCmdId:cmdId];
     }
 }
 
-- (NSArray *)ipListForLonglink {
-    
-//    NSMutableArray *ips = [NSMutableArray array];
-////    [ips addObject:LONG_LINK_IP];
-//    for (GZCSIpPortEntity *item in [[GZCSHostsHelper sharedHelper] ipListFromLocal]) {
-//        if (item.ip) {
-//            [ips addObject:item.ip];
-//        }
-//    }
-    return self.ipList;
-}
 
 - (NSData*)Request2BufferWithTaskID:(uint32_t)tid userContext:(const void *)context {
     NSData* data = NULL;
@@ -317,7 +232,7 @@ using namespace mars::stn;
             request.token = token;
             request.domain = domain;
             request.guid = guid;
-            request.appId = self.appID;
+            //request.appId = self.appID;
             request.timestamp = (int64_t)([[NSDate date] timeIntervalSince1970]*1000);
             data = [request data];
         }
