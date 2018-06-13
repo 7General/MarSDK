@@ -7,15 +7,18 @@
 //
 
 #import "MARSAppDelegate.h"
-#import <MARSDK/MARSLongLink.h>
-#import <MARSDK/MARSLogHelper.h>
+
+//#import <MARSDK/MARSLongLink.h>
+//#import <MARSDK/MARSLogHelper.h>
+
 
 @implementation MARSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    [[MARSLongLink sharedLongLink] createLongLinkWithAddress:@"1.6.8.1" ports:@[@(8079)] clientVersion:200];
+//    [[MARSLongLink sharedLongLink] createLongLinkWithAddress:@"1.6.8.1" ports:@[@(8079)] clientVersion:200];
+
     
     return YES;
 }
@@ -28,12 +31,16 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    [[MARSLongLink sharedLongLink] reportOnForegroud:NO];
+
+//    [[MARSLongLink sharedLongLink] reportOnForegroud:NO];
+
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    [[MARSLongLink sharedLongLink] reportOnForegroud:YES];
+
+//    [[MARSLongLink sharedLongLink] reportOnForegroud:YES];
+
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -43,8 +50,10 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [[MARSLongLink sharedLongLink] destoryLongLink];
-    [MARSLogHelper closeXLog];
+
+//    [[MARSLongLink sharedLongLink] destoryLongLink];
+//    [MARSLogHelper closeXLog];
+
 }
 
 @end
