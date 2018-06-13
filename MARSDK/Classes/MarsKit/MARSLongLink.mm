@@ -232,7 +232,7 @@ using namespace mars::stn;
             request.token = token;
             request.domain = domain;
             request.guid = guid;
-            request.appId = @"GUAZI";
+            //request.appId = self.appID;
             request.timestamp = (int64_t)([[NSDate date] timeIntervalSince1970]*1000);
             data = [request data];
         }
@@ -242,9 +242,9 @@ using namespace mars::stn;
 
 - (BOOL)authResponseData:(NSData*)responseData {
     BOOL authed = NO;
-    if (_authDelegate && [_authDelegate respondsToSelector:@selector(longlinkAuthResponseWithStatus:errCode:errMsg:timestamp:)]) {
+    if (_authDelegate && [_authDelegate respondsToSelector:@selector(longlinkAuthResponseWithStatus:errCode:errMsg:)]) {
         AuthResponse *response = [AuthResponse parseFromData:responseData error:nil];
-        authed = [_authDelegate longlinkAuthResponseWithStatus:response.status errCode:response.code errMsg:response.msg timestamp:response.timestamp];
+        authed = [_authDelegate longlinkAuthResponseWithStatus:response.status errCode:response.code errMsg:response.msg];
     }
     return authed;
 }

@@ -51,7 +51,7 @@
     
 }
 - (void)onTaskEnd:(int)errType code:(int)errCode {
-    CSLOG_INFO(@"AuthTask onTaskEnd: reponse = %@, errType=%d, errCode=%d", self.response.description, errType, errCode);
+    CSLOG_INFO(@"C2AiTask onTaskEnd: reponse = %@, errType=%d, errCode=%d", self.response.description, errType, errCode);
     if (self.onResult) {
         self.onResult(errCode == 0, self.response);
     }
