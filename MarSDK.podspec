@@ -36,7 +36,7 @@ TODO: Add long description of the pod here.
   
   ## 模块文件
   s.subspec "MarsKit" do |mk|
-      mk.source_files = 'MARSDK/Classes/MarsKit/*.{h,m}'
+      mk.source_files = 'MARSDK/Classes/MarsKit/**/*.*'
   end
   
   s.subspec "ProtoBuffile" do |pb|
