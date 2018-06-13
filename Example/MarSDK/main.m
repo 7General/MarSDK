@@ -8,17 +8,17 @@
 
 @import UIKit;
 #import "MARSAppDelegate.h"
-#import <MARSDK/MARSLogHelper.h>
+//#import <MARSDK/MARSLogHelper.h>
 
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        NSString* logPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"/xlog/log"];
-#if RELEASE
-        [MARSLogHelper openXLogWithPath:logPath logLever:kLevelInfo];
-#else
-        [MARSLogHelper openXLogWithPath:logPath logLever:kLevelDebug];
-#endif
+//        NSString* logPath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingString:@"/xlog/log"];
+//#if RELEASE
+//        [MARSLogHelper openXLogWithPath:logPath logLever:kLevelInfo];
+//#else
+//        [MARSLogHelper openXLogWithPath:logPath logLever:kLevelDebug];
+//#endif
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([MARSAppDelegate class]));
     }
 }
