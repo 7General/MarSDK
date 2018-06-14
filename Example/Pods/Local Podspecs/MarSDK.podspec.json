@@ -1,6 +1,6 @@
 {
   "name": "MARSDK",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "summary": "tencent WeChat For MARS",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/7General/MarSDK.git",
@@ -13,11 +13,12 @@
   },
   "source": {
     "git": "https://github.com/7General/MarSDK.git",
-    "tag": "0.0.7"
+    "tag": "0.0.9"
   },
   "platforms": {
     "ios": "8.0"
   },
+  "source_files": "MARSDK/Classes/**/*",
   "vendored_frameworks": "MARSDK/Framework/mars.framework",
   "libraries": [
     "z",
@@ -38,15 +39,5 @@
     "Protobuf": [
 
     ]
-  },
-  "subspecs": [
-    {
-      "name": "MarsKit",
-      "source_files": "MARSDK/Classes/MarsKit/*.{h,m}"
-    },
-    {
-      "name": "ProtoBuffile",
-      "source_files": "MARSDK/Classes/ProtoBuffile/*.{h,m}"
-    }
-  ]
+  }
 }
