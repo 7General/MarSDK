@@ -42,11 +42,11 @@
   "subspecs": [
     {
       "name": "MarsHelper",
-      "source_files": "MARSDK/Classes/MarsHelper/*.{h,mm}"
+      "source_files": "MARSDK/Classes/MarsHelper/*"
     },
     {
       "name": "MarsKit",
-      "source_files": "MARSDK/Classes/MarsKit/*.{h,mm,cc,m}"
+      "source_files": "MARSDK/Classes/MarsKit/*"
     },
     {
       "name": "ProtoBuffile",
