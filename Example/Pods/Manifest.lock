@@ -1,10 +1,7 @@
 PODS:
   - MARSDK (0.0.7):
-    - MARSDK/MarsHelper (= 0.0.7)
     - MARSDK/MarsKit (= 0.0.7)
     - MARSDK/ProtoBuffile (= 0.0.7)
-    - Protobuf
-  - MARSDK/MarsHelper (0.0.7):
     - Protobuf
   - MARSDK/MarsKit (0.0.7):
     - Protobuf
@@ -24,7 +21,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  MARSDK: 45acceb5a67d87c330a4422d6c0e731ddaafc7b5
+  MARSDK: e34cb6b95020d81ee9147b38dd319dc751170a79
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
 
 PODFILE CHECKSUM: b1415b241cd1a62a2b1e92d3c0eaedd26aa2580b
