@@ -1,1 +1,1 @@
-../../../../../MARSDK/Classes/MarsHelper/MARSLogHelper.h
+../../../../../MARSDK/Classes/MarsKit/MARSLogHelper.h

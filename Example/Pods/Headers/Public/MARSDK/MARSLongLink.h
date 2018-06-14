@@ -1,1 +1,1 @@
-../../../../../MARSDK/Classes/MarsHelper/MARSLongLink.h
+../../../../../MARSDK/Classes/MarsKit/MARSLongLink.h
